@@ -6,6 +6,10 @@ backend:
   app_id: Ov23lio1PTqfdbfe2RX9
 media_folder: images
 public_folder: /images
+media_library:
+  name: uploadcare
+  config:
+    publicKey: demopublickey
 collections:
   - name: uploads
     label: Uploads
