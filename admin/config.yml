@@ -1,0 +1,16 @@
+backend:
+  name: github
+  repo: <username>/cdn
+  branch: main
+media_folder: images
+public_folder: /images
+collections:
+  - name: uploads
+    label: Uploads
+    files:
+      - name: images
+        label: Images
+        file: uploads/images.md
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Image", name: "image", widget: "image" }
