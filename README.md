@@ -7,7 +7,9 @@ https://<username>.github.io/<repo>/images/<file>
 https://<username>.github.io/<repo>/scripts/<file>
 ```
 
-A minimal Decap CMS is available under `/admin/` for uploading images or creating Markdown content without using git.
+A minimal Decap CMS is available under `/cdn/admin/`, `/portfolio/admin/`, and `/playground/admin/` for uploading images or creating Markdown content without using git.
+Each directory contains a `config.yml` pointing to its respective repository.
+Open `dashboard.html` to choose between the three admin areas.
 
 ## Enable GitHub Pages
 1. Open the repository on GitHub.
