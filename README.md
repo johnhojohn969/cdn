@@ -9,7 +9,7 @@ https://<username>.github.io/<repo>/scripts/<file>
 
 A live instance is hosted at [cdn.attyzen.com](https://cdn.attyzen.com).
 
-A minimal Decap CMS is available under `/cdn/admin/`, `/portfolio/admin/`, and `/playground/admin/` for uploading images or creating Markdown content without using git.
+A minimal Decap CMS is available under `/admin/cdn/`, `/admin/portfolio/`, and `/admin/playground/` for uploading images or creating Markdown content without using git.
 Each directory contains a `config.yml` pointing to its respective repository.
 Open `index.html` to choose between the three admin areas.
 
