@@ -29,7 +29,6 @@ jobs:
       working-directory: worker
       run: |
         echo 'name = "decap-oauth-proxy"' > wrangler.toml
-        echo 'type = "javascript"' >> wrangler.toml
         echo 'account_id = "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"' >> wrangler.toml
         echo 'workers_dev = true' >> wrangler.toml
         echo 'compatibility_date = "2024-07-28"' >> wrangler.toml
@@ -38,6 +37,7 @@ jobs:
       env:
         GITHUB_CLIENT_ID: ${{ secrets.GIT_CLIENT_ID }}
         GITHUB_CLIENT_SECRET: ${{ secrets.GIT_CLIENT_SECRET }}
+        CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       run: |
         echo "$GITHUB_CLIENT_ID" | wrangler secret put GITHUB_CLIENT_ID
         echo "$GITHUB_CLIENT_SECRET" | wrangler secret put GITHUB_CLIENT_SECRET
