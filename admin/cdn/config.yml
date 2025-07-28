@@ -2,21 +2,26 @@ backend:
   name: github
   repo: johnhojohn969/cdn
   branch: main
-  auth_type: implicit
-  app_id: Ov23lio1PTqfdbfe2RX9
-media_folder: images
-public_folder: /images
-media_library:
-  name: uploadcare
-  config:
-    publicKey: demopublickey
+  base_url: https://decap-oauth-proxy.johnhojohn969.workers.dev
+  auth_endpoint: /auth
+  squash_merges: true
+
+media_folder: uploads/cdn
+public_folder: /uploads/cdn
+
+# Nếu bạn vẫn dùng Uploadcare thì giữ lại phần này,
+# còn nếu muốn lưu trực tiếp vào GitHub repo thì bỏ block dưới đây
+# media_library:
+#   name: uploadcare
+#   config:
+#     publicKey: demopublickey
+
 collections:
-  - name: uploads
-    label: Uploads
-    files:
-      - name: images
-        label: Images
-        file: uploads/images.md
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Image", name: "image", widget: "image" }
+  - name: cdn_uploads
+    label: CDN Uploads
+    folder: uploads/cdn
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
