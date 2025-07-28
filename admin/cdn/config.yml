@@ -2,10 +2,10 @@ backend:
   name: github
   repo: johnhojohn969/cdn
   branch: main
+  auth_scope: public_repo
   base_url: https://decap-oauth-proxy.johnhojohn969.workers.dev
   auth_endpoint: /auth
   squash_merges: true
-  app_id: Ov23lio1PTqfdbfe2RX9
 
 media_folder: uploads/cdn
 public_folder: /uploads/cdn
