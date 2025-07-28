@@ -25,14 +25,6 @@ jobs:
     - name: 📥 Install Wrangler
       run: npm install -g wrangler
 
-    - name: 🔐 Inject GitHub secrets
-      working-directory: ./worker
-      env:
-        GITHUB_CLIENT_ID: ${{ secrets.GIT_CLIENT_ID }}
-        GITHUB_CLIENT_SECRET: ${{ secrets.GIT_CLIENT_SECRET }}
-      run: |
-        echo "$GITHUB_CLIENT_ID" | wrangler secret put GITHUB_CLIENT_ID
-        echo "$GITHUB_CLIENT_SECRET" | wrangler secret put GITHUB_CLIENT_SECRET
     - name: ✍️ Patch wrangler.toml với thông tin riêng
       working-directory: worker
       run: |
@@ -41,6 +33,14 @@ jobs:
         echo 'account_id = "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"' >> wrangler.toml
         echo 'workers_dev = true' >> wrangler.toml
         echo 'compatibility_date = "2024-07-28"' >> wrangler.toml
+    - name: 🔐 Inject GitHub secrets
+      working-directory: ./worker
+      env:
+        GITHUB_CLIENT_ID: ${{ secrets.GIT_CLIENT_ID }}
+        GITHUB_CLIENT_SECRET: ${{ secrets.GIT_CLIENT_SECRET }}
+      run: |
+        echo "$GITHUB_CLIENT_ID" | wrangler secret put GITHUB_CLIENT_ID
+        echo "$GITHUB_CLIENT_SECRET" | wrangler secret put GITHUB_CLIENT_SECRET
     - name: 🚀 Deploy Cloudflare Worker
       working-directory: ./worker
       env:
