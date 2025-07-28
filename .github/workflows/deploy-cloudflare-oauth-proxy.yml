@@ -31,8 +31,8 @@ jobs:
         GITHUB_CLIENT_ID: ${{ secrets.GIT_CLIENT_ID }}
         GITHUB_CLIENT_SECRET: ${{ secrets.GIT_CLIENT_SECRET }}
       run: |
-        echo "$GITHUB_CLIENT_ID" | wrangler secret put GITHUB_CLIENT_ID --yes
-        echo "$GITHUB_CLIENT_SECRET" | wrangler secret put GITHUB_CLIENT_SECRET --yes
+        echo "$GITHUB_CLIENT_ID" | wrangler secret put GITHUB_CLIENT_ID
+        echo "$GITHUB_CLIENT_SECRET" | wrangler secret put GITHUB_CLIENT_SECRET
     - name: ✍️ Patch wrangler.toml với thông tin riêng
       working-directory: worker
       run: |
