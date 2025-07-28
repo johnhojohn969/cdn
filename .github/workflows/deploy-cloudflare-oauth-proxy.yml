@@ -29,9 +29,11 @@ jobs:
       working-directory: worker
       run: |
         echo 'name = "decap-oauth-proxy"' > wrangler.toml
+        echo 'main = "src/index.ts"' >> wrangler.toml
         echo 'account_id = "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"' >> wrangler.toml
         echo 'workers_dev = true' >> wrangler.toml
         echo 'compatibility_date = "2024-07-28"' >> wrangler.toml
+        echo 'compatibility_flags = ["nodejs_compat"]' >> wrangler.toml
     - name: 🔐 Inject GitHub secrets
       working-directory: ./worker
       env:
