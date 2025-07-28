@@ -1,0 +1,41 @@
+name: Deploy Decap OAuth Proxy (from external repo)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/deploy-cloudflare-oauth-proxy.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📦 Checkout Cloudflare Worker code (external)
+      uses: actions/checkout@v3
+      with:
+        repository: sterlingwes/decap-proxy
+        path: worker
+
+    - name: 🛠 Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: 📥 Install Wrangler
+      run: npm install -g wrangler
+
+    - name: 🔐 Inject GitHub secrets
+      working-directory: ./worker
+      env:
+        GITHUB_CLIENT_ID: ${{ secrets.GITHUB_CLIENT_ID }}
+        GITHUB_CLIENT_SECRET: ${{ secrets.GITHUB_CLIENT_SECRET }}
+      run: |
+        echo "$GITHUB_CLIENT_ID" | wrangler secret put GITHUB_CLIENT_ID --yes
+        echo "$GITHUB_CLIENT_SECRET" | wrangler secret put GITHUB_CLIENT_SECRET --yes
+
+    - name: 🚀 Deploy Cloudflare Worker
+      working-directory: ./worker
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      run: wrangler deploy
